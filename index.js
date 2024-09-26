@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = 3010;
 
 // Middleware
 app.use(cors());
@@ -22,7 +22,9 @@ app.get('/', (req, res) => {
 });
 
 // Sincronización de la base de datos y inicio del servidor
-db.sync()
+db.sync(
+  /* {force: true} */
+)
   .then(() => {
     console.log('Base de datos sincronizada');
     app.listen(port, () => {
