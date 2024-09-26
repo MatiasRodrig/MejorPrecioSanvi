@@ -2,7 +2,7 @@ import Product from "../models/products.model.js";
 import Supermarket from "../models/supermarket.model.js";
 
 export const createProduct = async (req, res) => {
-    const { name, description, price, supermarket } = req.body;
+    const { name, description, price, supermarket, imageUrl } = req.body;
     try {
         let supermarketInstance;
         if (supermarket.id) {
@@ -12,7 +12,7 @@ export const createProduct = async (req, res) => {
             }
         } else {
             supermarketInstance = await Supermarket.create({
-                name: supermarket.name,
+                name: supermarket.nameSupermarket,
                 address: supermarket.address
             });
         }
@@ -21,7 +21,8 @@ export const createProduct = async (req, res) => {
             name,
             description,
             price,
-            SupermarketId: supermarketInstance.id
+            SupermarketId: supermarketInstance.id,
+            imageUrl
         });
 
         res.status(201).json(newProduct);

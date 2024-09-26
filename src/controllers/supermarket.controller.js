@@ -1,9 +1,9 @@
 import Supermarket from "../models/supermarket.model.js";
 
 export const createSupermarket = async (req, res) => {
-    const { name, address } = req.body;
+    const { nameSupermarket, address } = req.body;
     try {
-        const supermarket = await Supermarket.create({ name, address });
+        const supermarket = await Supermarket.create({ nameSupermarket, address });
         res.status(201).json(supermarket);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -31,9 +31,9 @@ export const getSupermarketById = async (req, res) => {
 
 export const updateSupermarket = async (req, res) => {
     const { id } = req.params;
-    const { name, address } = req.body;
+    const { nameSupermarket, address } = req.body;
     try {
-        const supermarket = await Supermarket.update({ name, address }, { where: { id } });
+        const supermarket = await Supermarket.update({ nameSupermarket, address }, { where: { id } });
         res.json(supermarket);
     } catch (error) {
         res.status(500).json({ message: error.message });

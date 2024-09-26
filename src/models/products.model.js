@@ -14,6 +14,10 @@ const Product = db.define('Product', {
     price: {
         type: DataTypes.FLOAT,
         allowNull: false
+    },
+    imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 }, {
     timestamps: true

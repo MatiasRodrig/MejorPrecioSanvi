@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import db from '../../db.js';
 
 const Supermarket = db.define('Supermarket', {
-    name: {
+    nameSupermarket: {
         type: DataTypes.STRING,
         allowNull: false
     },
