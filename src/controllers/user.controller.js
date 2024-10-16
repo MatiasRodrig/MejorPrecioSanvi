@@ -22,13 +22,13 @@ export const getUsers = async (req, res) => {
 
 export const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { name, lastName, email, password, phoneNumber } = req.body;
+    const { username, email, password, phoneNumber } = req.body;
     try {
         const user = await User.findByPk(id);
         if (!user) {
             return res.status(404).json({ message: 'Usuario no encontrado' });
         }
-        await user.update({ name, lastName, email, password, phoneNumber });
+        await user.update({ username, email, password, phoneNumber });
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });

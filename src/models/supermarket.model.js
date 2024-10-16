@@ -8,7 +8,7 @@ const Supermarket = db.define('Supermarket', {
     },
     address: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
 });
 

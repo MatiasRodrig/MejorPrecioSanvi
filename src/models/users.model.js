@@ -3,11 +3,7 @@ import db from '../../db.js';
 import bcrypt from 'bcryptjs';
 
 const User = db.define('User', {
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  lastName: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false
   },

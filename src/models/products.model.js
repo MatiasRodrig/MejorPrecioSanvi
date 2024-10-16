@@ -1,6 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../../db.js';
 import Supermarket from './supermarket.model.js';
+import categories from './categories.model.js';
 
 const Product = db.define('Product', {
     name: {
@@ -14,6 +15,13 @@ const Product = db.define('Product', {
     price: {
         type: DataTypes.FLOAT,
         allowNull: false
+    },
+    categorieID: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: categories,
+            key: 'id'
+        }
     }
 }, {
     timestamps: true
@@ -21,5 +29,7 @@ const Product = db.define('Product', {
 
 Product.belongsTo(Supermarket, { foreignKey: 'SupermarketId' });
 Supermarket.hasMany(Product, { foreignKey: 'SupermarketId' });
+
+
 
 export default Product;

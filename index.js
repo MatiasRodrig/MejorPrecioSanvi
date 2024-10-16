@@ -3,12 +3,15 @@ import cors from 'cors';
 import db from './db.js';
 import usersRoutes from './src/routes/users.routes.js';
 import productsRoutes from './src/routes/products.routes.js';
+import marketRoutes from './src/routes/supermarkets.routes.js'
+import categoryRoutes from './src/routes/categories.routes.js'
 import dotenv from 'dotenv';
+import './src/middlewares/associationsByCategory.js'
 
 dotenv.config();
 
 const app = express();
-const port = 3000;
+const port = 3030;
 
 // Middleware
 app.use(cors());
@@ -17,6 +20,8 @@ app.use(express.json());
 // Ruta de prueba
 app.use(usersRoutes);
 app.use(productsRoutes);
+app.use(marketRoutes);
+app.use(categoryRoutes)
 app.get('/', (req, res) => {
   res.send('¡Hola Mundo!');
 });

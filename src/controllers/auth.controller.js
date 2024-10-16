@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const createUser = async (req, res) => {
-    const { name, lastName, email, password, phoneNumber } = req.body;
+    const { username, email, password, phoneNumber } = req.body;
     try {
         const emailExists = await User.findOne({ where: { email } });
         if (emailExists) {
@@ -12,7 +12,7 @@ export const createUser = async (req, res) => {
         // Hashear la contraseña antes de guardarla
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = await User.create({ 
-            name, 
+            username, 
             lastName, 
             email, 
             password: hashedPassword, 
@@ -41,8 +41,7 @@ export const login = async (req, res) => {
         const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY, { expiresIn: '1d' });
         res.json({ token, user: {
             id: user.id,
-            name: user.name,
-            lastName: user.lastName,
+            name: user.username,
             email: user.email,
             phoneNumber: user.phoneNumber
         } });
