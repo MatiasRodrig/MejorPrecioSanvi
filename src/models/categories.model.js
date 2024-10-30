@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from '../../db.js'
-import Product from "./products.model.js";
+import sequelize from '../../db.js';
 
 const Categories = sequelize.define(
     "categories",
@@ -9,18 +8,15 @@ const Categories = sequelize.define(
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
-        }
-    },
-    {
-        name: {
+        },
+        name: {  // Aquí es donde defines la columna 'name'
             type: DataTypes.STRING,
             allowNull: false
         }
     },
     {
-        timestamps: true
+        timestamps: true // Este es el segundo objeto que define las opciones del modelo
     }
-)
+);
 
-
-export default Categories
+export default Categories;

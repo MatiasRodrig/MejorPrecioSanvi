@@ -3,6 +3,7 @@ import db from '../../db.js';
 import Supermarket from './supermarket.model.js';
 import categories from './categories.model.js';
 
+
 const Product = db.define('Product', {
     name: {
         type: DataTypes.STRING,
@@ -16,7 +17,7 @@ const Product = db.define('Product', {
         type: DataTypes.FLOAT,
         allowNull: false
     },
-    categorieID: {
+    categoryID: {
         type: DataTypes.INTEGER,
         references: {
             model: categories,

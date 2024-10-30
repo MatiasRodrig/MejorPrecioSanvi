@@ -1,4 +1,6 @@
 import Categories from "../models/categories.model.js";
+import Product from '../models/products.model.js'
+
 
 export const createCategory = async (req, res) => {
     const { name } = req.body
@@ -15,19 +17,24 @@ export const createCategory = async (req, res) => {
 export const getCategories = async (req, res) => {
     try {
         const categories = await Categories.findAll({
-            include: ['products']
-        })
-        res.json(categories)
+            include: [{
+                model: Product,
+                as: 'Products', // Asegurarse de usar el alias correcto
+                attributes: ['id', 'name', 'price', 'categoryId'] // Especificar los atributos que deseas de los productos
+            }],
+            attributes: ['id', 'name'] // Esto asegurará que también obtengas el nombre de la categoría
+        });
+        res.json(categories);
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        res.status(500).json({ error: error.message });
     }
-}
+};
 
 export const getCategoryById = async (req, res) => {
     const { id } = req.params
     try {
         const category = await Categories.findByPk(id, {
-            include: ['products']
+            include: [{ model: Product, as: 'Products' }]
         })
         res.json(category)
     } catch (error) {

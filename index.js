@@ -6,7 +6,8 @@ import productsRoutes from './src/routes/products.routes.js';
 import marketRoutes from './src/routes/supermarkets.routes.js'
 import categoryRoutes from './src/routes/categories.routes.js'
 import dotenv from 'dotenv';
-import './src/middlewares/associationsByCategory.js'
+import './src/middlewares/associations.js'
+
 
 dotenv.config();
 
@@ -22,7 +23,7 @@ app.use(usersRoutes);
 app.use(productsRoutes);
 app.use(marketRoutes);
 app.use(categoryRoutes)
-app.get('/', (req, res) => {
+app.get('/test', (req, res) => {
   res.send('¡Hola Mundo!');
 });
 
@@ -35,3 +36,6 @@ db.sync()
     });
   })
   .catch(error => console.error('Error al sincronizar la base de datos:', error));
+
+
+

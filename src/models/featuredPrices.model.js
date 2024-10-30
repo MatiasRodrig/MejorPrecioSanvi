@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import db from "../../db.js";
 
+
 const FeaturedPrices = db.define('FeaturedPrices', {
     featured: {
         type: DataTypes.BOOLEAN,
@@ -16,11 +17,5 @@ const FeaturedPrices = db.define('FeaturedPrices', {
     }
 });
 
-FeaturedPrices.associate = function (models) {
-    FeaturedPrices.belongsTo(models.Product), {
-        foreignKey: 'ProductId',
-        as: 'product'
-    }
-}
 
 export default FeaturedPrices
